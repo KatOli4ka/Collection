@@ -16,9 +16,6 @@ public class Main {
 //        } else {
 //            System.out.println("Вы ввели не корректные данные!");
 //        }
-        Car lada = new Car("Granta", "Lada", 1.6, TypeOfBody.SEDAN);
-        Truck fl = new Truck("FL-D5K", "Volvo", 2.4, LoadCapacity.N1);
-        Bus ikarus = new Bus("280", "Ikarus", 8.0,null);
 
         Mechanic<Car> ivan = new Mechanic<Car>("Иван Попов", "Hjpolo");
         Mechanic<Transport> vitya = new Mechanic<Transport>("Витя Иванович", "CoCoCo");
@@ -27,34 +24,40 @@ public class Main {
         Sponsor cocaCola = new Sponsor("Coca Cola", 3345000);
         Sponsor fanta = new Sponsor("Fanta", 2890000);
         Sponsor pepsi = new Sponsor("Pepsi", 1900000);
-        Driver<Car> vova = new DriverB("Вова", true, 8);
+//        Driver<Car> vova = new DriverB("Вова", true, 8);
 //                DriverD jora = new DriverD("Жора", true, 9);
 //                DriverC misha = new DriverC("Миша", true, 12);
 
 
-        lada = new Car("Granta", "Lada", 1.6, TypeOfBody.SEDAN);
+        Car lada = new Car("Granta", "Lada", 1.6, TypeOfBody.SEDAN);
+        lada.addDriver(new DriverB("Вова", true, 8,"B"));
+        lada.addMechanic(ivan);
+        lada.addSponsor(cocaCola,fanta);
 
-        lada.addDriver(new DriverB("Вова", true, 8));
-//        lada.addMechanic(ivan);
-//        lada.addSponsor(cocaCola,fanta);
+        Truck fl = new Truck("FL-D5K", "Volvo", 2.4, LoadCapacity.N1);
+        fl.addDriver(new DriverC("Жора", true, 9,"C"));
+        fl.addMechanic(vitya);
+        fl.addSponsor(pepsi);
 
-       fl = new Truck("FL-D5K", "Volvo", 2.4, LoadCapacity.N1);
-
-
-       fl.addDriver(new DriverC("Жора", true, 9));
-//        fl.addMechanic(vitya);
-//        fl.addSponsor(pepsi, fanta);
-
-
-        ikarus = new Bus("280", "Ikarus", 8.0, Capacity.TINY);
-
-
-        ikarus.addDriver(new DriverD("Миша", true, 12));
-//        ikarus.addMechanic(vitya);
-//        ikarus.addSponsor(pepsi, cocaCola);
+        Bus ikarus = new Bus("280", "Ikarus", 8.0, Capacity.TINY);
+        ikarus.addDriver(new DriverD("Миша", true, 12,"D"));
+        ikarus.addMechanic(vitya);
+        ikarus.addSponsor(pepsi, cocaCola);
 
 //        getDiagnoctic(lada,bmw,kia,subaru,fl,fe,fm,fh,liaz,ikarus,paz,scania);
-//        List<Transport> transports = List.of(lada, fl, ikarus);
+        List<Transport> transports = List.of(lada, fl, ikarus);
+        for (Transport transport : transports) {
+            printInfo(transport);
+        }
+    }
+
+    public static void printInfo(Transport transport) {
+        System.out.println("Инфо по авто "+transport.getBrand()+" "+transport.getModel());
+        System.out.println("Водитель: "+transport.getDrivers());
+        System.out.println("Механик: "+transport.getMechanics());
+        System.out.println("Спонсоры: "+transport.getSponsors());
+        System.out.println();
+
     }
 
 

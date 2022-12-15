@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public abstract class Driver<A extends Transport> {
+public  class Driver<A extends Transport> {
     private final String fio;
     private boolean hasDriveLicense;
     private int expirience;
-    private final List<Driver<?>> drivers=new ArrayList<>();
-    private final List<Mechanic<?>> mechanics=new ArrayList<>();
-    private final List<Sponsor> sponsors=new ArrayList<>();
+    private String category;
 
-    public Driver(String fio, boolean hasDriveLicense, int expirience) {
+
+    public Driver(String fio, boolean hasDriveLicense, int expirience,String category) {
         this.fio = fio;
         this.hasDriveLicense = hasDriveLicense;
         this.expirience = expirience;
+        this.category=category;
     }
 
     public String getFio() {
@@ -42,21 +42,18 @@ public abstract class Driver<A extends Transport> {
         this.expirience = expirience;
     }
 
-    public abstract void start(A transport);
+    public void start(A transport){};
 
-    public abstract void stop(A transport);
+    public void stop(A transport){};
 
-    public abstract void refuel(A transport);
+    public void refuel(A transport){};
 
     public void printInfo(A transport) {
         System.out.println("Водитель - "+fio+" управляет автомобилем "+transport.getBrand()+" и будет участвовать в заезде");
     }
 
-    public void addDriver(Driver<?> driver) {
-        drivers.add(driver);
-    } public void addMechanic(Mechanic<?> mechanic) {
-        mechanics.add(mechanic);
-    } public void addSponsor(Sponsor sponsor) {
-        sponsors.add(sponsor);
+    @Override
+    public String toString() {
+        return getFio() +" со стажем вождения "  + expirience +" лет, категория "+category;
     }
 }

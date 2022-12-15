@@ -23,4 +23,9 @@ public class Mechanic <A extends Transport>{
     public void fix(A t) {
         t.fix();
     }
+
+    @Override
+    public String toString() {
+        return getFio() +" из компании " + getNameCompany();
+    }
 }

@@ -1,7 +1,4 @@
 package transport;
-import transport.driver.DriverB;
-import transport.driver.DriverC;
-import transport.driver.DriverD;
 import transport.driver.Driver;
 
 
@@ -11,6 +8,9 @@ public abstract class Transport implements Competing{
     private String brand;
     private String model;
     private double engineVolume;
+    private final List<Driver<?>> drivers=new ArrayList<>();
+    private final List<Mechanic<?>> mechanics=new ArrayList<>();
+    private final List<Sponsor> sponsors=new ArrayList<Sponsor>();
 
 
     public Transport(String model, String brand,
@@ -75,8 +75,25 @@ public abstract class Transport implements Competing{
     }
 
     public abstract void fix();
+    public void addDriver(Driver<?>... drivers) {
+        this.drivers.addAll(Arrays.asList(drivers));
+    } public void addMechanic(Mechanic<?>... mechanics) {
+        this.mechanics.addAll(Arrays.asList(mechanics));
+    } public void addSponsor(Sponsor... sponsors) {
+        this.sponsors.addAll(Arrays.asList(sponsors));
+    }
 
+    public List<Driver<?>> getDrivers() {
+        return drivers;
+    }
 
+    public List<Mechanic<?>> getMechanics() {
+        return mechanics;
+    }
+
+    public List<Sponsor> getSponsors() {
+        return sponsors;
+    }
 }
 
 
