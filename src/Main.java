@@ -24,9 +24,6 @@ public class Main {
         Sponsor cocaCola = new Sponsor("Coca Cola", 3345000);
         Sponsor fanta = new Sponsor("Fanta", 2890000);
         Sponsor pepsi = new Sponsor("Pepsi", 1900000);
-//        Driver<Car> vova = new DriverB("Вова", true, 8);
-//                DriverD jora = new DriverD("Жора", true, 9);
-//                DriverC misha = new DriverC("Миша", true, 12);
 
 
         Car lada = new Car("Granta", "Lada", 1.6, TypeOfBody.SEDAN);
