@@ -70,8 +70,7 @@ public abstract class Transport implements Competing{
     }
     @Override
     public String toString() {
-        return this.getBrand()+ " "+this.getModel()+", объем двигателя - "+
-                this.engineVolume;
+        return this.getBrand()+ " "+this.getModel();
     }
 
     public abstract void fix();

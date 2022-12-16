@@ -6,16 +6,20 @@ import transport.driver.Driver;
 
 import java.util.List;
 
+;
+
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("ДЗ-1");
-//        boolean uspeh=Data.proverka("ghyq1","poiu8j_","poiu8j");
-//        if (uspeh) {
-//            System.out.println("Вы ввели корректные данные!");
-//        } else {
-//            System.out.println("Вы ввели не корректные данные!");
-//        }
+
+        Car bmw = new Car("Z8", "BMW", 1.9,TypeOfBody.COUPE);
+        Car kia = new Car("Sportage", "Kia", 1.7,TypeOfBody.STATION_WAGON);
+        Car subaru = new Car("Forester", "Subaru", 1.5,TypeOfBody.HATCHBACK);
+
+        Truck fe = new Truck("FE-G9K320", "Volvo", 8.9,LoadCapacity.N3);
+        Truck fm = new Truck("FM-D8K", "Volvo", 6.0,LoadCapacity.N2);
+        Truck fh = new Truck("FH--D13K", "Volvo", 12.8,LoadCapacity.N3);
 
         Mechanic<Car> ivan = new Mechanic<Car>("Иван Попов", "Hjpolo");
         Mechanic<Transport> vitya = new Mechanic<Transport>("Витя Иванович", "CoCoCo");
@@ -41,11 +45,28 @@ public class Main {
         ikarus.addMechanic(vitya);
         ikarus.addSponsor(pepsi, cocaCola);
 
-//        getDiagnoctic(lada,bmw,kia,subaru,fl,fe,fm,fh,liaz,ikarus,paz,scania);
+
         List<Transport> transports = List.of(lada, fl, ikarus);
         for (Transport transport : transports) {
             printInfo(transport);
         }
+
+        System.out.println("ДЗ-2. Задача 1");
+        System.out.println();
+        ServiceStation<Car> linkAuto = new ServiceStation<>("LinkAuto");
+        ServiceStation<Truck> autoMobile = new ServiceStation<>("AutoMobile");
+        linkAuto.addTransport(bmw);
+        linkAuto.addTransport(kia);
+        linkAuto.addTransport(subaru);
+        linkAuto.addTransport(lada);
+        linkAuto.techInspection();
+
+        autoMobile.addTransport(fl);
+        autoMobile.addTransport(fe);
+        autoMobile.addTransport(fm);
+        autoMobile.addTransport(fh);
+        autoMobile.techInspection();
+
     }
 
     public static void printInfo(Transport transport) {
@@ -58,18 +79,4 @@ public class Main {
     }
 
 
-
-//    private static void getDiagnoctic(Transport... transports) {
-//        for (Transport transport : transports) {
-//            if (!transport.getDiagnostic()) {
-//                try {
-//                    throw new RuntimeException("Авто " + transport.getBrand() + " "
-//                            + transport.getModel() + " не прошел диагностику");
-//                } catch (RuntimeException e) {
-//                    System.out.println(e.getMessage());
-//                }
-//            }
-//        }
-//
-//    }
 }
