@@ -3,10 +3,7 @@ import transport.driver.DriverB;
 import transport.driver.DriverC;
 import transport.driver.DriverD;
 
-import java.util.ArrayDeque;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
 
 ;
 
@@ -86,6 +83,11 @@ public class Main {
         System.out.println("Первая очередь: "+queue1);
         System.out.println("Вторая очередь: "+queue2);
 
+        System.out.println();
+        System.out.println("ДЗ-2.Задание 3");
+        System.out.println();
+        example();
+
 
 
     }
@@ -138,12 +140,19 @@ public class Main {
             queue2.poll();
         }
     }
-
-
-
-
-
-
-
-
+    private static void example() {
+        List<List<String>> biDemArrList = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            biDemArrList.add(i, new ArrayList<>());
+            for (int j = 0; j < 8; j++) {
+                biDemArrList.get(i).add(j, ((i+j)%2==1?"●":"◯"));
+            }
+        }
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                System.out.print(biDemArrList.get(i).get(j) + " ");
+            }
+            System.out.println();
+        }
+    }
 }
