@@ -2,9 +2,11 @@ import transport.*;
 import transport.driver.DriverB;
 import transport.driver.DriverC;
 import transport.driver.DriverD;
-import transport.driver.Driver;
 
+import java.util.ArrayDeque;
 import java.util.List;
+import java.util.Queue;
+import java.util.Random;
 
 ;
 
@@ -19,7 +21,7 @@ public class Main {
 
         Truck fe = new Truck("FE-G9K320", "Volvo", 8.9,LoadCapacity.N3);
         Truck fm = new Truck("FM-D8K", "Volvo", 6.0,LoadCapacity.N2);
-        Truck fh = new Truck("FH--D13K", "Volvo", 12.8,LoadCapacity.N3);
+        Truck fh = new Truck("FH-D13K", "Volvo", 12.8,LoadCapacity.N3);
 
         Mechanic<Car> ivan = new Mechanic<Car>("Иван Попов", "Hjpolo");
         Mechanic<Transport> vitya = new Mechanic<Transport>("Витя Иванович", "CoCoCo");
@@ -55,20 +57,38 @@ public class Main {
         System.out.println();
         ServiceStation<Car> linkAuto = new ServiceStation<>("LinkAuto");
         ServiceStation<Truck> autoMobile = new ServiceStation<>("AutoMobile");
-        linkAuto.addTransport(bmw);
-        linkAuto.addTransport(kia);
-        linkAuto.addTransport(subaru);
-        linkAuto.addTransport(lada);
+        linkAuto.addCar(bmw);
+        linkAuto.addCar(kia);
+        linkAuto.addCar(subaru);
+        linkAuto.addCar(lada);
         linkAuto.techInspection();
 
-        autoMobile.addTransport(fl);
-        autoMobile.addTransport(fe);
-        autoMobile.addTransport(fm);
-        autoMobile.addTransport(fh);
+        autoMobile.addTruck(fl);
+        autoMobile.addTruck(fe);
+        autoMobile.addTruck(fm);
+        autoMobile.addTruck(fh);
         autoMobile.techInspection();
 
-    }
+        System.out.println();
+        System.out.println("ДЗ-2.Задание 2");
+        Queue<String> queue1 = new ArrayDeque<>();
+        Queue<String> queue2 = new ArrayDeque<>();
+        randomFilling(queue1);
+        randomFilling(queue2);
+        System.out.println("Первая очередь: "+queue1);
+        System.out.println("Вторая очередь: "+queue2);
+        System.out.println();
+        add("Мора Кайли",queue1,queue2);
+        System.out.println("Первая очередь: "+queue1);
+        System.out.println("Вторая очередь: "+queue2);
+        System.out.println();
+        remove(queue1,queue2);
+        System.out.println("Первая очередь: "+queue1);
+        System.out.println("Вторая очередь: "+queue2);
 
+
+
+    }
     public static void printInfo(Transport transport) {
         System.out.println("Инфо по авто "+transport.getBrand()+" "+transport.getModel());
         System.out.println("Водитель: "+transport.getDrivers());
@@ -77,6 +97,53 @@ public class Main {
         System.out.println();
 
     }
+    private static final List<String> NAMES=List.of(
+            "Глеб Калюжный",
+            "Юра Борисов",
+            "Анна Старшенбаум",
+            "Ким Нам Джун",
+            "Со Ин Гук",
+            "Пак Чи Мин",
+            "Нам Гун Мин",
+            "Джесси",
+            "CL",
+            "Лили Коллинз"
+    );
+    private static Random RANDOM = new Random();
+    private static final int MAX_SIZE=5;
+    private static void randomFilling(Queue<String> queue) {
+        int size= RANDOM.nextInt(MAX_SIZE+1);
+        for (int i = 0; i < size; i++) {
+            queue.offer(NAMES.get(RANDOM.nextInt(NAMES.size())));
+        }
+    }
+    private static void add(String name, Queue<String> queue1, Queue<String> queue2) {
+        if (queue1.size() == MAX_SIZE && queue2.size() == MAX_SIZE) {
+            System.out.println("Нужно возвать Галю!");
+            return;
+        }
+        if (queue1.size() < queue2.size()) {
+            queue1.offer(name);
+
+        } else {
+            queue2.offer(name);
+        }
+
+    }
+
+    private static void remove(Queue<String> queue1, Queue<String> queue2) {
+        if (RANDOM.nextBoolean()) {
+            queue1.poll();
+        }else {
+            queue2.poll();
+        }
+    }
+
+
+
+
+
+
 
 
 }
